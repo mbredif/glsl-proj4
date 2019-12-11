@@ -1,4 +1,4 @@
-vec3 aea_inverse (aea_t t, vec3 p) {
+vec3 proj_inverse (aea_t t, vec3 p) {
   p = (p - t.p0) / t.k0;
   p.y -= t.rh;
   float absrh1 = length(p.xy);
@@ -11,6 +11,6 @@ vec3 aea_inverse (aea_t t, vec3 p) {
     p.z
   );
 }
-vec3 aea_inverse (aea_t t, vec2 p) {
-  return aea_inverse(t,vec3(p,0));
+vec3 proj_inverse (aea_t t, vec2 p) {
+  return proj_inverse(t,vec3(p,0));
 }

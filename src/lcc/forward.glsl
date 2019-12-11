@@ -1,4 +1,4 @@
-vec3 lcc_forward (lcc_t t, vec3 p) { // lat lon height -> x y z
+vec3 proj_forward (lcc_t t, vec3 p) { // lat lon height -> x y z
   p.x = t.ns * (p.x - t.lon0);
   // p.y = clamp(p.y, -HALFPI, HALFPI); // optional ?
   vec2 sintl = sin(p.xy);
@@ -10,6 +10,6 @@ vec3 lcc_forward (lcc_t t, vec3 p) { // lat lon height -> x y z
     p.z
   );
 }
-vec3 lcc_forward (lcc_t t, vec2 p) {
-  return lcc_forward(t,vec3(p.xy,0));
+vec3 proj_forward (lcc_t t, vec2 p) {
+  return proj_forward(t,vec3(p.xy,0));
 }

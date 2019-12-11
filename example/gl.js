@@ -39,13 +39,13 @@ var draw = regl({
       const float pi = 3.141592653589793;
       vec3 p = vec3(position * pi / 180., 0.);
 
-      p = aea_inverse(aea, aea_forward(aea, p));
-      p = geocent_inverse(geocent, geocent_forward(geocent, p));
-      p = gnom_inverse(gnom, gnom_forward(gnom, p));
-      p = lcc_inverse(lcc, lcc_forward(lcc, p));
-      p = tmerc_inverse(tmerc, tmerc_forward(tmerc, p));
+      p = proj_inverse(aea, proj_forward(aea, p));
+      p = proj_inverse(geocent, proj_forward(geocent, p));
+      p = proj_inverse(gnom, proj_forward(gnom, p));
+      p = proj_inverse(lcc, proj_forward(lcc, p));
+      p = proj_inverse(tmerc, proj_forward(tmerc, p));
 
-      p = aea_forward(aea, p);
+      p = proj_forward(aea, p);
       gl_Position = vec4(p*1e-6*vec3(1,aspect,1),1);
     }
   `,

@@ -1,4 +1,4 @@
-vec3 tmerc_inverse (tmerc_t t, vec3 p) {
+vec3 proj_inverse (tmerc_t t, vec3 p) {
   float con;
   if (t.sphere > 0.5) {
     p.z -= t.p0.z;
@@ -43,6 +43,6 @@ vec3 tmerc_inverse (tmerc_t t, vec3 p) {
     p.z
   );
 }
-vec3 tmerc_inverse (tmerc_t t, vec2 p) {
-  return tmerc_inverse(t, vec3(p,0));
+vec3 proj_inverse (tmerc_t t, vec2 p) {
+  return proj_inverse(t, vec3(p,0));
 }

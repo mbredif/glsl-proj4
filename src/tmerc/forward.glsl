@@ -1,4 +1,4 @@
-vec3 tmerc_forward (tmerc_t t, vec3 p) {
+vec3 proj_forward (tmerc_t t, vec3 p) {
   float lon = p.x, lat = p.y;
   float dlon = lon - t.lon0;
   float sinphi = sin(lat), cosphi = cos(lat);
@@ -28,6 +28,6 @@ vec3 tmerc_forward (tmerc_t t, vec3 p) {
     p.z
   );
 }
-vec3 tmerc_forward (tmerc_t t, vec2 p) {
-  return tmerc_forward(t,vec3(p,0));
+vec3 proj_forward (tmerc_t t, vec2 p) {
+  return proj_forward(t,vec3(p,0));
 }

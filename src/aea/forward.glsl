@@ -1,4 +1,4 @@
-vec3 aea_forward (aea_t t, vec3 p) {
+vec3 proj_forward (aea_t t, vec3 p) {
   p.x = t.ns0 * (p.x - t.lon0);
   vec2 sinp = sin(p.xy);
   float qs = qsfnz(t.e3, sinp.y);
@@ -9,6 +9,6 @@ vec3 aea_forward (aea_t t, vec3 p) {
     p.z
   );
 }
-vec3 aea_forward (aea_t t, vec2 p) {
-  return aea_forward(t,vec3(p.xy,0));
+vec3 proj_forward (aea_t t, vec2 p) {
+  return proj_forward(t,vec3(p.xy,0));
 }

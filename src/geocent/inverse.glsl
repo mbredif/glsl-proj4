@@ -1,4 +1,4 @@
-vec3 geocent_inverse (geocent_t t, vec3 p) {
+vec3 proj_inverse (geocent_t t, vec3 p) {
   p = (p-t.p0)/t.k0;
   float sqp = length(p.xy);
   float theta = atan(p.z*t.a,sqp*t.b);

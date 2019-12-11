@@ -1,4 +1,4 @@
-vec3 gnom_forward (gnom_t t, vec3 p) {
+vec3 proj_forward (gnom_t t, vec3 p) {
   p.x -= t.lon0;
   vec2 sinp = sin(p.xy);
   vec2 cosp = cos(p.xy);
@@ -11,6 +11,6 @@ vec3 gnom_forward (gnom_t t, vec3 p) {
     p.z
   );
 }
-vec3 gnom_forward (gnom_t t, vec2 p) {
-  return gnom_forward(t,vec3(p,0));
+vec3 proj_forward (gnom_t t, vec2 p) {
+  return proj_forward(t,vec3(p,0));
 }

@@ -1,4 +1,4 @@
-vec3 lcc_inverse (lcc_t t, vec3 p) {
+vec3 proj_inverse (lcc_t t, vec3 p) {
   p = (p - t.p0) / t.k0;
   p.y = t.rh - p.y;
   float rh1 = length(p.xy);
@@ -18,6 +18,6 @@ vec3 lcc_inverse (lcc_t t, vec3 p) {
 
   return vec3(theta, phi, p.z);
 }
-vec3 lcc_inverse (lcc_t t, vec2 p) {
-  return lcc_inverse(t,vec3(p,0));
+vec3 proj_inverse (lcc_t t, vec2 p) {
+  return proj_inverse(t,vec3(p,0));
 }
