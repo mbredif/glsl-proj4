@@ -1,6 +1,10 @@
-import { default as proj } from '../src';
-var regl = require('regl')()
-var camera = require('regl-camera')(regl, { distance: 10 })
+import wrapREGL from 'regl';
+import cameraREGL from 'regl-camera'
+import proj from '../src';
+import mesh from './hawaii.json';
+
+const regl = wrapREGL();
+var camera = cameraREGL(regl, { distance: 10 })
 
 var proj_aea = proj('aea', '+proj=aea +lat_1=16 +lat_2=24 +lat_0=19 +lon_0=-157 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs')
 var proj_lcc = proj('lcc', '+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs')
@@ -14,7 +18,6 @@ console.log(proj_gnom);
 console.log(proj_tmerc);
 console.log(proj);
 
-var mesh = require('./hawaii.json')
 var draw = regl({
   frag: `
     precision mediump float;

@@ -68,7 +68,7 @@ Create a glsl-proj4 instance `p`, named `name`, from a proj4js instance (or its 
 
 Return the uniform values. You can pass this object as a struct uniform
 
-## p.glsl.all, p.glsl.forward, p.glsl.inverse, p.glsl.type
+## glsl code
 
 `p.glsl` is a per-projection type static dictionnary, which provides glsl code as strings to be included in the shaders.
 `p.glsl.type` contains only the glsl type for the projection.
