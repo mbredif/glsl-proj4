@@ -33,10 +33,13 @@ class aea {
     this.c = ms1*ms1 + this.ns0*qs1;
     this.rh = e.a * Math.sqrt(this.c - this.ns0 * qs0) / this.ns0;
   }
-  glsl_type() { return aea_t; }
-  glsl_forward() { return aea_t + glsl_qsfnz + aea_forward; }
-  glsl_inverse() { return aea_t + glsl_constants + glsl_adjust_lon + glsl_asinz + glsl_phi1z + aea_inverse; }
-  glsl() { return aea_t + glsl_constants + glsl_adjust_lon + glsl_asinz + glsl_phi1z + glsl_qsfnz + aea_forward + aea_inverse; }
+}
+
+aea.prototype.glsl = {
+  type: aea_t,
+  forward: aea_t + glsl_qsfnz + aea_forward,
+  inverse: aea_t + glsl_constants + glsl_adjust_lon + glsl_asinz + glsl_phi1z + aea_inverse,
+  all: aea_t + glsl_constants + glsl_adjust_lon + glsl_asinz + glsl_phi1z + glsl_qsfnz + aea_forward + aea_inverse,
 }
 
 export default aea;

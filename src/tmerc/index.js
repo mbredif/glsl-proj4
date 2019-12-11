@@ -33,11 +33,13 @@ class tmerc {
     this.ml0 = a * mlfn(e0, e1, e2, e3,this.lat0)
     this.e = [e0, e1, e2, e3];
   }
-  glsl_type() { return tmerc_t; }
-  glsl_forward() { return tmerc_t + glsl_mlfn + tmerc_forward; }
-  glsl_inverse() { return tmerc_t + glsl_constants + glsl_asinz + glsl_mlfn + tmerc_inverse; }
-  glsl() { return tmerc_t + glsl_constants + glsl_asinz + glsl_mlfn + tmerc_forward + tmerc_inverse; }
+}
 
+tmerc.prototype.glsl = {
+  type: tmerc_t,
+  forward: tmerc_t + glsl_mlfn + tmerc_forward,
+  inverse: tmerc_t + glsl_constants + glsl_asinz + glsl_mlfn + tmerc_inverse,
+  all: tmerc_t + glsl_constants + glsl_asinz + glsl_mlfn + tmerc_forward + tmerc_inverse,
 }
 
 export default tmerc;

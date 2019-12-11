@@ -1,6 +1,6 @@
-var parse = require('proj4/lib/parseCode')
-var ellipsoid = require('proj4/lib/constants/Ellipsoid')
-var derive = require('proj4/lib/deriveConstants')
+import parse from 'proj4/lib/parseCode'
+import ellipsoid from 'proj4/lib/constants/Ellipsoid'
+import derive from 'proj4/lib/deriveConstants'
 
 import gnom from './gnom';
 import aea from './aea';
@@ -12,32 +12,34 @@ function glsl_proj(name, strOrProj) {
   var p = strOrProj.projName ? strOrProj : parse(strOrProj);
   var e = ellipsoid[p.ellps || p.datumCode || 'WGS84'] || {};
   if (e && p) e = derive.sphere(e.a, e.b, e.rf, p.ellps, p.sphere);
-  var members = null;
+  var proj = null;
   if (p.projName === 'gnom') {
-    members = new gnom(p, e);
+    proj = new gnom(p, e);
   } else if (p.projName === 'aea') {
-    members = new aea(p, e);
+    proj = new aea(p, e);
   } else if (p.projName === 'geocent') {
-    members = new geocent(p, e);
+    proj = new geocent(p, e);
   } else if (p.projName === 'tmerc') {
-    members = new tmerc(p, e);
+    proj = new tmerc(p, e);
   } else if (p.projName === 'lcc') {
-    members = new lcc(p, e);
+    proj = new lcc(p, e);
   } else return null;
 
   const uniforms = {};
-  Object.keys(members).forEach(function (key) {
-    uniforms[name+'.'+key] = members[key]
+  Object.keys(proj).forEach(function (key) {
+    uniforms[name+'.'+key] = proj[key]
   })
-console.log(p.projName, members.glsl());
   return {
     proj: p,
-    uniforms,
-    glsl_type: members.glsl_type,
-    glsl_forward: members.glsl_forward,
-    glsl_inverse: members.glsl_inverse,
-    glsl : members.glsl
+    glsl: proj.glsl,
+    uniforms
   }
 }
+
+glsl_proj.gnom = gnom;
+glsl_proj.aea = aea;
+glsl_proj.geocent = geocent;
+glsl_proj.tmerc = tmerc;
+glsl_proj.lcc = lcc;
 
 export default glsl_proj;

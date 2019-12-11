@@ -68,13 +68,15 @@ Create a glsl-proj4 instance `p`, named `name`, from a proj4js instance (or its 
 
 Return the uniform values. You can pass this object as a struct uniform
 
-## p.glsl(), p.glsl_forward(), p.glsl_inverse(), p.glsl_type()
+## p.glsl.all, p.glsl.forward, p.glsl.inverse, p.glsl.type
 
-Get the glsl code as a string to be included in the shader.
-`p.glsl_type()` contains only the glsl type for the projection.
-`p.glsl_forward()` contains the glsl type definition and the forward functions.
-`p.glsl_inverse()` contains the glsl type definition and the inverse functions.
-`p.glsl()` contains everything : the glsl type definition, the foward and the inverse functions.
+`p.glsl` is a per-projection type static dictionnary, which provides glsl code as strings to be included in the shaders.
+`p.glsl.type` contains only the glsl type for the projection.
+`p.glsl.forward` contains the glsl type definition and the forward functions.
+`p.glsl.inverse` contains the glsl type definition and the inverse functions.
+`p.glsl.all` contains everything : the glsl type definition, the foward and the inverse functions.
+
+These dictionnaries are also available statically as `proj.aea.glsl`, `proj.geocent.glsl`, `proj.gnom.glsl`, `proj.lcc.glsl` and `proj.tmerc.glsl`.
 
 ## p.proj
 

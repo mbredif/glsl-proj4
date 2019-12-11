@@ -20,10 +20,14 @@ class gnom {
     this.rc = defined(p.rc, 1);
     this.infinity_dist = 1000 * this.a;
   }
-  glsl_type() { return gnom_t; }
-  glsl_forward() { return gnom_t + glsl_constants + gnom_forward; }
-  glsl_inverse() { return gnom_t + glsl_constants + glsl_adjust_lon + glsl_asinz + gnom_inverse; }
-  glsl() { return gnom_t + glsl_constants + glsl_adjust_lon + glsl_asinz + gnom_forward + gnom_inverse; }
 }
+
+gnom.prototype.glsl = {
+  type: gnom_t,
+  forward: gnom_t + glsl_constants + gnom_forward,
+  inverse: gnom_t + glsl_constants + glsl_adjust_lon + glsl_asinz + gnom_inverse,
+  all: gnom_t + glsl_constants + glsl_adjust_lon + glsl_asinz + gnom_forward + gnom_inverse,
+}
+
 
 export default gnom;

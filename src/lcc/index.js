@@ -33,10 +33,13 @@ class lcc {
     this.af0 = a * f0;
     this.rh = this.af0 * Math.pow(ts0, ns);
   }
-  glsl_type() { return lcc_t; }
-  glsl_forward() { return lcc_t + glsl_constants + glsl_tsfnz + lcc_forward; }
-  glsl_inverse() { return lcc_t + glsl_constants + glsl_phi2z + lcc_inverse; }
-  glsl() { return lcc_t + glsl_constants + glsl_tsfnz + glsl_phi2z + glsl_phi2z + lcc_forward + lcc_inverse; }
+}
+
+lcc.prototype.glsl = {
+  type: lcc_t,
+  forward: lcc_t + glsl_constants + glsl_tsfnz + lcc_forward,
+  inverse: lcc_t + glsl_constants + glsl_phi2z + lcc_inverse,
+  all: lcc_t + glsl_constants + glsl_tsfnz + glsl_phi2z + glsl_phi2z + lcc_forward + lcc_inverse,
 }
 
 export default lcc;

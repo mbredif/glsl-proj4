@@ -19,10 +19,13 @@ class geocent {
     this.p0 = [defined(p.x0,0), defined(p.y0,0), defined(p.z0,0)];
     this.k0 = defined(p.k0,p.k,1);
   }
-  glsl_type() { return geocent_t; }
-  glsl_forward() { return geocent_t + geocent_forward; }
-  glsl_inverse() { return geocent_t + geocent_inverse; }
-  glsl() { return geocent_t + geocent_forward + geocent_inverse; }
+}
+
+geocent.prototype.glsl = {
+  type: geocent_t,
+  forward: geocent_t + geocent_forward,
+  inverse: geocent_t + geocent_inverse,
+  all: geocent_t + geocent_forward + geocent_inverse,
 }
 
 export default geocent;

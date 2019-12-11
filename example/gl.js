@@ -7,11 +7,12 @@ var proj_lcc = proj('lcc', '+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +
 var proj_geocent = proj('geocent', '+proj=geocent +datum=WGS84 +units=m +no_defs')
 var proj_gnom = proj('gnom', '+proj=gnom +lat_0=90 +lon_0=0 +x_0=6300000 +y_0=6300000 +ellps=WGS84 +datum=WGS84 +units=m +no_defs')
 var proj_tmerc = proj('tmerc', '+proj=tmerc +lat_0=20 +lon_0=136 +k=0.9999 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs')
-console.log(proj_aea, proj_aea.uniforms);
-console.log(proj_lcc, proj_lcc.uniforms);
-console.log(proj_geocent, proj_geocent.uniforms);
-console.log(proj_gnom, proj_gnom.uniforms);
-console.log(proj_tmerc, proj_tmerc.uniforms);
+console.log(proj_aea);
+console.log(proj_lcc);
+console.log(proj_geocent);
+console.log(proj_gnom);
+console.log(proj_tmerc);
+console.log(proj);
 
 var mesh = require('./hawaii.json')
 var draw = regl({
@@ -22,11 +23,11 @@ var draw = regl({
     }
   `,
   vert: "precision mediump float;\n" +
-    proj_aea.glsl() +
-    proj_geocent.glsl() +
-    proj_lcc.glsl() +
-    proj_tmerc.glsl() +
-    proj_gnom.glsl() +
+    proj_aea.glsl.all +
+    proj_geocent.glsl.all +
+    proj_lcc.glsl.all +
+    proj_tmerc.glsl.all +
+    proj_gnom.glsl.all +
     `
     uniform aea_t aea;
     uniform geocent_t geocent;
